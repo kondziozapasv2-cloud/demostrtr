@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 	<!-- Google tag (gtag.js) -->
@@ -801,7 +801,7 @@
       border-bottom: 1px solid var(--line);
       background:
         linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.92)),
-        url('https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop');
+        url('images_foty/tlo.jpeg');
       background-size: cover;
       background-position: center;
     }
@@ -1166,7 +1166,7 @@
 
       <div class="projects">
 
-        <article class="project" onclick="openProject(this)">
+        <article class="project" data-project="tattoos" onclick="openProject(this)">
           <img src="images_dziary/13.jpeg" alt="project">
 
           <div class="project-content">
@@ -1179,7 +1179,7 @@
           </div>
         </article>
 
-        <article class="project" onclick="openProject(this)">
+        <article class="project" data-project="tattoos" onclick="openProject(this)">
           <img src="images_foty/21.jpg" alt="project">
 
           <div class="project-content">
@@ -1192,7 +1192,7 @@
           </div>
         </article>
 
-        <article class="project" onclick="openProject(this)">
+        <article class="project" data-project="tattoos" onclick="openProject(this)">
           <img src="images_rysunki/4.jpg" alt="project">
 
           <div class="project-content">
@@ -1308,8 +1308,19 @@
   </div>
 
   <script>
+    // Every project card title MUST match these keys exactly
     const projectData = {
-      Bloodline: {
+      tattoos: {
+        slug: 'tattoos',
+        title: 'Tatuaże',
+        description: 'Dark gothic tattoo compositions inspired by occult symbolism and editorial aesthetics.',
+        images: [
+          'images_dziary/13.jpeg',
+          'images_dziary/1.jpeg',
+          'images_dziary/14.jpeg'
+        ]
+      },
+      "Bloodline": {
         description: 'A dark editorial campaign inspired by gothic romance, fashion magazines and horror cinema aesthetics.',
         images: [
 		  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop',
@@ -1317,7 +1328,7 @@
           'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
         ]
       },
-      'Noir Signal': {
+      "Noir Signal": {
         description: 'Immersive interface design focused on atmosphere, transitions, layered textures and emotional interaction.',
         images: [
           'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200&auto=format&fit=crop',
@@ -1325,7 +1336,7 @@
           'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop'
         ]
       },
-      'Veil.exe': {
+      "Veil.exe": {
         description: 'Cyber-goth visual concept blending underground music visuals, neon lighting and futuristic melancholy.',
         images: [
           'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1200&auto=format&fit=crop',
@@ -1336,14 +1347,24 @@
     };
 
     function openProject(project) {
-      const title = project.querySelector('h3').innerText;
+      // Prefer explicit project slug from data attribute
+      const slug = project.dataset.project;
 
-      const data = projectData[title];
+      // Fallback to title text if attribute is missing
+      const fallbackTitle = project.querySelector('h3')?.innerText.trim();
+
+      const data = projectData[slug] || projectData[fallbackTitle];
+
+      // Prevent crashes if project does not exist
+      if (!data) {
+        console.error(`Missing project data for: ${slug || fallbackTitle}`);
+        return;
+      }
 
       document.getElementById('mainPage').classList.remove('active-page');
       document.getElementById('projectPage').classList.add('active-page');
 
-      document.getElementById('projectPageTitle').innerText = title;
+      document.getElementById('projectPageTitle').innerText = data.title;
       document.getElementById('projectPageDescription').innerText = data.description;
 
       const grid = document.getElementById('projectPageGrid');
@@ -1352,8 +1373,12 @@
       data.images.forEach(src => {
         const img = document.createElement('img');
         img.src = src;
+        img.loading = 'lazy';
         grid.appendChild(img);
       });
+
+      // Simulate dedicated subpage route
+      window.location.hash = data.slug;
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -1362,8 +1387,29 @@
       document.getElementById('projectPage').classList.remove('active-page');
       document.getElementById('mainPage').classList.add('active-page');
 
+      // Clear route hash
+      history.replaceState(null, '', window.location.pathname);
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // Open correct project when refreshing hashed URL
+    window.addEventListener('load', () => {
+      const hash = window.location.hash.replace('#', '');
+
+      if(hash && projectData[hash]) {
+        const fakeProject = {
+          dataset: {
+            project: hash
+          },
+          querySelector: () => ({
+            innerText: projectData[hash].title
+          })
+        };
+
+        openProject(fakeProject);
+      }
+    });
 
     
 
