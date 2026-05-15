@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<!-- Google tag (gtag.js) -->
@@ -784,7 +784,6 @@
       transform: translateY(0);
     }
 
- 
     .page {
   position: absolute;
   inset: 0;
@@ -801,6 +800,7 @@
   pointer-events: all;
   position: relative;
 }
+
     .project-page-hero {
       min-height: 60vh;
       display: flex;
@@ -1181,34 +1181,31 @@
             <span>Creative Direction</span>
             <h3>Tatuaże</h3>
             <p>
-              Dark editorial identity mixing fashion photography,
-              cinematic storytelling and brutal typography.
+              Jeżeli lubisz mroczne wzory często nawiązujące do techniki linorytu jesteś w dobrym miejscu.
             </p>
           </div>
         </article>
 
-        <article class="project" data-project="tattoos" onclick="openProject(this)">
+        <article class="project" data-project="bloodline" onclick="openProject(this)">
           <img src="images_foty/21.jpg" alt="project">
 
           <div class="project-content">
             <span>UI / Experience</span>
             <h3>Foty</h3>
             <p>
-              Experimental portfolio interface focused on atmosphere,
-              movement and immersive transitions.
+              Zbiór fotografii wykonanych na życzenie klienta.
             </p>
           </div>
         </article>
 
-        <article class="project" data-project="tattoos" onclick="openProject(this)">
+        <article class="project" data-project="veil" onclick="openProject(this)">
           <img src="images_rysunki/4.jpg" alt="project">
 
           <div class="project-content">
             <span>Visual Concept</span>
             <h3>Inne prace</h3>
             <p>
-              Cyber-goth visual language inspired by underground music,
-              glitch aesthetics and neon melancholy.
+              Wszystkie inne prace które miałem okazję wykonać
             </p>
           </div>
         </article>
@@ -1287,7 +1284,7 @@
           Atmospheric visual storytelling inspired by gothic editorials and cinematic darkness.
         </p>
 
-        <a class="btn btn-primary back-btn" onclick="goBack()">Return to Portfolio</a>
+        <a class="btn btn-primary back-btn" onclick="goBack()">Back main site</a>
       </div>
     </section>
 
@@ -1321,35 +1318,58 @@
       tattoos: {
         slug: 'tattoos',
         title: 'Tatuaże',
-        description: 'Dark gothic tattoo compositions inspired by occult symbolism and editorial aesthetics.',
+        description: 'Mroczna atmosfera i kontrast prac które zapiszą się na skórze niepowtarzalnym klimatem',
         images: [
           'images_dziary/13.jpeg',
           'images_dziary/1.jpeg',
           'images_dziary/14.jpeg'
         ]
       },
-      "Bloodline": {
-        description: 'A dark editorial campaign inspired by gothic romance, fashion magazines and horror cinema aesthetics.',
+      bloodline: {
+  slug: 'bloodline',
+  title: 'Foty',
+        description: 'Wykonuje fotografie na zlecenia: -Wesela -Studniówki -Sesje portretowe',
         images: [
-		  'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop'
+		  'images_foty/1.jpg',
+          'images_foty/3.jpg',
+          'images_foty/12.jpg',
+		  'images_foty/13.jpg',
+          'images_foty/18.jpg',
+          'images_foty/19.jpg',
+		  'images_foty/21.jpg',
+          'images_foty/36.jpg',
+          'images_foty/44.jpg',
+		  'images_foty/50.jpg',
         ]
       },
-      "Noir Signal": {
+      noir: {
+  slug: 'noir',
+  title: 'Foty',
         description: 'Immersive interface design focused on atmosphere, transitions, layered textures and emotional interaction.',
         images: [
-          'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?q=80&w=1200&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop'
+          'images_foty/1.jpg',
+          'images_foty/3.jpg',
+          'images_foty/12.jpg',
+		  'images_foty/13.jpg',
+          'images_foty/18.jpg',
+          'images_foty/19.jpg',
+		  'images_foty/21.jpg',
+          'images_foty/36.jpg',
+          'images_foty/44.jpg',
+		  'images_foty/50.jpg',
         ]
       },
-      "Veil.exe": {
-        description: 'Cyber-goth visual concept blending underground music visuals, neon lighting and futuristic melancholy.',
+      veil: {
+  slug: 'veil',
+  title: 'Inne prace',
+        description: 'Prace wykonywane na zlecenia rożnymi technikami: Digital art,tradycyjny rysunek, modele3d ',
         images: [
-          'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1200&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200&auto=format&fit=crop',
-          'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop'
+          'images_rysunki/1.jpg',
+		  'images_rysunki/2.png',
+		  'images_rysunki/3.png',
+		  'images_rysunki/4.jpg',
+		  'images_rysunki/16.jpg',
+		  'images_rysunki/17.png'
         ]
       }
     };
