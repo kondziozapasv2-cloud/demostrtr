@@ -784,15 +784,23 @@
       transform: translateY(0);
     }
 
+ 
     .page {
-      display: none;
-      animation: fadeUp 0.8s ease;
-    }
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
 
-    .page.active-page {
-      display: block;
-    }
-
+.page.active-page {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  position: relative;
+}
     .project-page-hero {
       min-height: 60vh;
       display: flex;
